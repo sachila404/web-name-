@@ -159,7 +159,7 @@
 							
 							</p>
 
-							<form method="post" action="#">
+							<form name ="submit-to-google-sheet> "method="post" action="#">
 								<div class="row">
 									<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
 									<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
@@ -189,5 +189,16 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+		       <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyKw1r-KERGnRbfedYwapSG4UbXf0f1M6CAx8BucBfK5FOT5yfTmGdw8Pt7c9tGu5gSWw/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
 	</body>
 </html>
